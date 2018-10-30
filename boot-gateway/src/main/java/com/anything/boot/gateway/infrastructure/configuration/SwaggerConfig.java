@@ -1,5 +1,8 @@
 package com.anything.boot.gateway.infrastructure.configuration;
 
+import lombok.Data;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -13,28 +16,33 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 /**
  * TODO
  *
- * @Author:FanMingxin
- * @Date: 2018/10/10 15:00
+ * @author FanMingxin
+ * @date 2018/10/30 10:50
  */
+@Data
 @Configuration
 @EnableSwagger2
+@ConditionalOnProperty(prefix = "swagger",value = {"enable"},havingValue = "true")
+@ConfigurationProperties(prefix = "swagger")
 public class SwaggerConfig {
+
+    private String basePackage;
 
     @Bean
     public Docket createRestApi(){
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.example.demo.app"))
+                .apis(RequestHandlerSelectors.basePackage(basePackage))
                 .paths(PathSelectors.any())
                 .build();
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Spring Boot2中使用Swagger2构建RESTful API")
-                .description("rest api 文档构建利器")
-                .termsOfServiceUrl("anything@top.com")
+                .title("Boot-Gateway API Doc")
+                .description("Boot-Gateway API Doc")
+                .termsOfServiceUrl("anything0827@126.com")
                 .version("1.0")
                 .build();
     }

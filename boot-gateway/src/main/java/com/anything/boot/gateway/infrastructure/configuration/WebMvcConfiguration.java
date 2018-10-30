@@ -6,8 +6,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 /**
  * TODO
  *
- * @Author:FanMingxin
- * @Date: 2018/10/10 17:55
+ * @author FanMingxin
+ * @date 2018/10/30 10:50
  */
 public class WebMvcConfiguration implements WebMvcConfigurer {
 

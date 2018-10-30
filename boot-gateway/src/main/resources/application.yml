@@ -4,3 +4,17 @@ spring:
 
 swagger:
   enable: true
+  base-package: com.anything.boot.gateway.app
+
+
+demo:
+  name: test
+  birth-year: 2000
+  list:
+    - one
+    - two
+    - three
+  set: [1,2,3]
+  map:
+    name: xiaoming
+    age: 21
