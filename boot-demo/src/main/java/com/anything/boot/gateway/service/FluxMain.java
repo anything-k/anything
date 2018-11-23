@@ -1,10 +1,8 @@
 package com.anything.boot.gateway.service;
 
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +29,7 @@ public class FluxMain {
     }
 
     public static void api(){
-        Flux<Integer> emptyFlex = Flux.empty();
+        /*Flux<Integer> emptyFlex = Flux.empty();
         Flux<String> staticFlex = Flux.just("a","b","c");
 
         System.out.println(Thread.currentThread().getName());
@@ -39,14 +37,14 @@ public class FluxMain {
             System.out.println(str);
             System.out.println(Thread.currentThread().getName());
         });
-        System.out.println("end");
+        System.out.println("end");*/
 
         Flux<Integer> numbersOneToTen = Flux.range(1, 10);
-        numbersOneToTen.parallel(5)
+        numbersOneToTen.parallel(10)
                 .runOn(Schedulers.parallel())
-                .subscribe(a->System.out.println(a +"  " +Thread.currentThread().getName()));
+                .subscribe(FluxMain::pri);
 
-        Mono<Boolean> all = numbersOneToTen.all(a -> a == 5);
+        /*Mono<Boolean> all = numbersOneToTen.all(a -> a == 5);
         Mono<Boolean> any = numbersOneToTen.any(a -> a == 5);
         String as = numbersOneToTen.as(a -> {
             StringBuilder sb = new StringBuilder();
@@ -56,7 +54,19 @@ public class FluxMain {
         System.out.println(System.currentTimeMillis());
         System.out.println(numbersOneToTen.blockFirst(Duration.ofSeconds(2)));
         System.out.println(System.currentTimeMillis());
-        System.out.println(numbersOneToTen.blockFirst());
+        System.out.println(numbersOneToTen.blockFirst());*/
     }
 
+    public static void pri(Integer a){
+        /*try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }*/
+        int i = 1;
+        while(i < 1000){
+            System.out.println(a +"  "+ i + " " +Thread.currentThread().getName());
+            i ++ ;
+        }
+    }
 }

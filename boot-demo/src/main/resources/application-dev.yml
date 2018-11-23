@@ -1,0 +1,14 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: boot2
+
+server:
+  port: 8000
+
+zuul:
+  routes:
+    test:
+      path: /it/**
+      url: http://www.ityouknow.com/

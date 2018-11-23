@@ -2,12 +2,13 @@ package com.anything.boot.gateway.app;
 
 import com.anything.boot.gateway.infrastructure.configuration.DemoConfig;
 import com.anything.boot.gateway.service.DemoService;
+import com.google.common.collect.Maps;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 /**
  * TODO
@@ -55,5 +56,29 @@ public class DemoController {
     @GetMapping("/config")
     public Object config(){
         return demoConfig;
+    }
+
+    @PutMapping("/put")
+    public Object put(String name,Integer id){
+        Map<String,Object> result = Maps.newHashMap();
+        result.put("name",name);
+        result.put("id",id);
+        return result;
+    }
+
+    @PostMapping("/post")
+    public Object post(String name,Integer id){
+        System.out.println(name + "::" + id);
+
+        try {
+            Thread.sleep(10 * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("end");
+        Map<String,Object> result = Maps.newHashMap();
+        result.put("name","anty");
+        result.put("id",2);
+        return result;
     }
 }
