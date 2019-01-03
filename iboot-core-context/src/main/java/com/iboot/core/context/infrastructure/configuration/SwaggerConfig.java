@@ -1,4 +1,4 @@
-package com.anything.boot.gateway.infrastructure.configuration;
+package com.iboot.core.context.infrastructure.configuration;
 
 import lombok.Data;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;

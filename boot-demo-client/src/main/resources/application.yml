@@ -2,24 +2,18 @@ spring:
   profiles:
     active: dev
   application:
-    name: boot-demo
+    name: demo-client
+  boot:
+    admin:
+      client:
+        url: http://localhost:8000
   cloud:
     consul:
       host: localhost
       port: 8500
       discovery:
-        service-name: service-producer
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "health"
-  endpoint:
-    health:
-      show-details: always
-  health:
-    redis:
-      enabled: false
+        register: false
+
 
 swagger:
   enable: true
@@ -38,6 +32,13 @@ demo:
     name: xiaoming
     age: 21
 
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
 feign:
   hystrix:
     enabled: true
@@ -49,7 +50,7 @@ hystrix:
   command:
     default:
       fallback:
-        enabled: false
+        enabled: true
       execution:
         isolation:
           strategy: SEMAPHORE

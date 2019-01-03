@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: boot2
+
+server:
+  port: 9000
+
+zuul:
+  routes:
+    test:
+      path: /service/**
+      serviceId: service-producer
+  retryable: true
