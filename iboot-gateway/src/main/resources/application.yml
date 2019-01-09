@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: iboot-gateway
+  boot:
+    admin:
+      client:
+        url: http://localhost:8000
+
+server:
+  port: 9001
+
